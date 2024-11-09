@@ -13,6 +13,9 @@ include "dao/user.php";
 
 //em ăn cơm chưa
 
+// Im Hulk
+// Im Tiến
+
 if (!isset($_GET['pg'])) {
     include "view/home.php";
 } else {
