@@ -11,7 +11,7 @@ include "view/header.php";
 include "dao/sanpham.php";
 include "dao/user.php";
 
-
+//em ăn cơm chưa
 
 if (!isset($_GET['pg'])) {
     include "view/home.php";
