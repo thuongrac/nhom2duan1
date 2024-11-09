@@ -30,7 +30,7 @@
 
 /* Style cho các input */
 input[type="text"],
-input[type="password"] {
+input[type="matkhau"] {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -116,11 +116,11 @@ button[type="submit"]:hover {
             <form action="index.php?pg=dangnhap" method="POST" id="form-login">
                
                 <div class="form-group-login">
-                    <input type="text" name="username" id="username" class="email-ip" placeholder="Tên đăng nhập " required />
+                    <input type="text" name="taikhoan" id="taikhoan" class="email-ip" placeholder="Tên đăng nhập " required />
                     
                 </div>
                 <div class="form-group-login">
-                    <input type="password" name="password" id="password" placeholder="Mật khẩu " required />
+                    <input type="matkhau" name="matkhau" id="matkhau" placeholder="Mật khẩu " required />
                     <i class="far fa-eye eye"></i>
                     <i class="far fa-eye-slash eye eye-none"></i>
                 
@@ -133,7 +133,7 @@ button[type="submit"]:hover {
                             echo $saitaikhoan;
                         }
                     ?>
-                    <a href="index.php?pg=forgot_password" style="margin-left:52px; color:#000">Quên Mật Khẩu?</a>
+                    <a href="index.php?pg=forgot_matkhau" style="margin-left:52px; color:#000">Quên Mật Khẩu?</a>
                 <div class="btn-login pt-1">
                     <button type="submit">Đăng Nhập</button>
                 </div>

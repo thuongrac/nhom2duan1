@@ -21,22 +21,22 @@ if (!isset($_GET['pg'])) {
 } else {
     switch ($_GET['pg']) {
        
-        case 'dangky':
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $hoten = $_POST['hoten'];
-                $email = $_POST['email'];
-                $dienthoai = $_POST['dienthoai'];
-                $username = $_POST['username'];
-                $password = $_POST['password'];
-                $register_result = register_user($hoten, $email, $dienthoai, $username, $password);
-                if ($register_result === true) {
-                    echo '<p style="color: green;">Đăng ký thành công! Đăng nhập <a href="index.php?pg=dangnhap">tại đây</a>.</p>';
-                } else {
-                    echo '<p style="color: red;">Đăng ký thất bại: ' . $register_result . '</p>';
-                }
-            }
-            include "view/dangky.php";
-            break;
+        // case 'dangky':
+        //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //         $hoten = $_POST['hoten'];
+        //         $email = $_POST['email'];
+        //         $dienthoai = $_POST['dienthoai'];
+        //         $username = $_POST['username'];
+        //         $password = $_POST['password'];
+        //         $register_result = register_user($hoten, $email, $dienthoai, $username, $password);
+        //         if ($register_result === true) {
+        //             echo '<p style="color: green;">Đăng ký thành công! Đăng nhập <a href="index.php?pg=dangnhap">tại đây</a>.</p>';
+        //         } else {
+        //             echo '<p style="color: red;">Đăng ký thất bại: ' . $register_result . '</p>';
+        //         }
+        //     }
+        //     include "view/dangky.php";
+        //     break;
         case 'dangnhap':
             if (isset($_SESSION['user_id'])) {
                 header("Location: index.php");
@@ -48,21 +48,21 @@ if (!isset($_GET['pg'])) {
             $saitaikhoan = ''; 
         
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['username']) && isset($_POST['password'])) {
-                    $username = $_POST['username'];
-                    $password = $_POST['password'];
+                if (isset($_POST['taikhoan']) && isset($_POST['matkhau'])) {
+                    $username = $_POST['taikhoan'];
+                    $password = $_POST['matkhau'];
                     
                     // Sử dụng tên trường trong bảng SQL đúng với 'taikhoan' thay vì 'username'
-                    $user = get_user_by_username($username);
+                    $user = get_user_by_username($taikhoan);
                     
                     if ($user) {
                         // Sửa lại để lấy đúng id_user từ bảng SQL
                         $id_user = $user['id_user']; 
-                        $_SESSION['name'] = $username;
+                        $_SESSION['name'] = $taikhoan;
                         $_SESSION['id_user'] = $id_user;
                         
                         // Sử dụng hàm login_user để kiểm tra mật khẩu
-                        $login_result = login_user($username, $password);
+                        $login_result = login_user($taikhoan, $matkhau);
                         
                         if ($login_result) {
                             $_SESSION['user_id'] = $login_result;
