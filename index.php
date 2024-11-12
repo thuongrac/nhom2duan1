@@ -3,74 +3,35 @@ session_start();
 ob_start();
 include "dao/database.php";
 include "view/header.php";
-
-//help @@@@
-//@@@@@@@@@@@@@@@
-
-//!@@@@@@@@@@@@@@@
 include "dao/sanpham.php";
 include "dao/user.php";
 
-//em ăn cơm chưa
-// ở nơi phương xa ấy, giờ này em biêt không
-// Im Hulk
-// Im @@@@@,....
 
 if (!isset($_GET['pg'])) {
     include "view/home.php";
 } else {
     switch ($_GET['pg']) {
-       
-        // case 'dangky':
-        //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //         $hoten = $_POST['hoten'];
-        //         $email = $_POST['email'];
-        //         $dienthoai = $_POST['dienthoai'];
-        //         $username = $_POST['username'];
-        //         $password = $_POST['password'];
-        //         $register_result = register_user($hoten, $email, $dienthoai, $username, $password);
-        //         if ($register_result === true) {
-        //             echo '<p style="color: green;">Đăng ký thành công! Đăng nhập <a href="index.php?pg=dangnhap">tại đây</a>.</p>';
-        //         } else {
-        //             echo '<p style="color: red;">Đăng ký thất bại: ' . $register_result . '</p>';
-        //         }
-        //     }
-        //     include "view/dangky.php";
-        //     break;
         case 'dangnhap':
             if (isset($_SESSION['user_id'])) {
                 header("Location: index.php");
                 exit();
             }
-        
             $checkMK = 0; 
             $saimatkhau = ''; 
             $saitaikhoan = ''; 
         
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['taikhoan']) && isset($_POST['matkhau'])) {
+                if (!empty($_POST['taikhoan']) && !empty($_POST['matkhau'])) {
                     $username = $_POST['taikhoan'];
                     $password = $_POST['matkhau'];
-                    
-                    // Sử dụng tên trường trong bảng SQL đúng với 'taikhoan' thay vì 'username'
-                    $user = get_user_by_username($taikhoan);
-                    
+                    $user = get_user_by_username($username);
                     if ($user) {
-                        // Sửa lại để lấy đúng id_user từ bảng SQL
-                        $id_user = $user['id_user']; 
-                        $_SESSION['name'] = $taikhoan;
-                        $_SESSION['id_user'] = $id_user;
-                        
-                        // Sử dụng hàm login_user để kiểm tra mật khẩu
-                        $login_result = login_user($taikhoan, $matkhau);
-                        
+                        $login_result = login_user($username, $password);
                         if ($login_result) {
-                            $_SESSION['user_id'] = $login_result;
-                            if (isset($_SESSION['is_admin']) && ($_SESSION['is_admin'] == 1)) {
-                                echo '<center><p style="color: green;">Đăng nhập thành công!</p></center>';
+                            echo '<center><p style="color: green;">Đăng nhập thành công!</p></center>';
+                            if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
                                 header("Location: admin/index.php");
                             } else {
-                                echo '<center><p style="color: green;">Đăng nhập thành công!</p></center>';
                                 header("Location: index.php");
                             }
                             exit();
@@ -88,20 +49,16 @@ if (!isset($_GET['pg'])) {
             }
             include "view/dangnhap.php";
             break;
-        
+
         case 'dangxuat':
-            if ($is_user_logged_in) {
+            if (isset($_SESSION['user_id'])) {
                 session_unset();
                 session_destroy();
                 header("Location: index.php");
                 exit();
             }
             break;
-            
-    
     }
-
- }
- include "view/footer.php";
+}
+include "view/footer.php";
 ?>
-

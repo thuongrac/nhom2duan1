@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     // echo "Kết nối thành công!";
 }
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=duanmautest;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=dulieumau;charset=utf8";
     $username = 'root';
     $password = '';
 
@@ -23,10 +23,11 @@ function pdo_get_connection(){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     } catch (PDOException $e) {
-        // Log or handle the error appropriately
-        die("Connection failed: " . $e->getMessage());
+        die("Kết nối thất bại: " . $e->getMessage());
     }
 }
+
+// Hàm thực hiện truy vấn và lấy một kết quả duy nhất
 function pdo_query_one($sql){
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -36,10 +37,9 @@ function pdo_query_one($sql){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
     } catch (PDOException $e) {
-        // Log or handle the error appropriately
-        die("Query failed: " . $e->getMessage());
+        die("Truy vấn thất bại: " . $e->getMessage());
     } finally {
-        unset($conn);
+        unset($conn); // Đóng kết nối
     }
 }
 ?>
