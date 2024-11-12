@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
+$servername = "localhost:3306";
 $username = "root";
 $password = "";
-$database = "duanmautest"; // Đổi "ten_database" thành tên cơ sở dữ liệu của bạn
+$database = "dulieumau"; // Đổi "ten_database" thành tên cơ sở dữ liệu của bạn
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $database);
