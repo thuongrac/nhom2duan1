@@ -5,7 +5,7 @@ $password = "";
 $database = "dulieumau"; // Đổi "ten_database" thành tên cơ sở dữ liệu của bạn
 
 // Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $database);
 
 // Kiểm tra kết nối và debug lỗi
 if ($conn->connect_error) {
@@ -19,8 +19,8 @@ function pdo_get_connection(){
     $password = '';
 
     try {
-        $conn = new PDO($dburl, $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO($dburl, username: $username, password: $password);
+        $conn->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
         return $conn;
     } catch (PDOException $e) {
         die("Kết nối thất bại: " . $e->getMessage());
