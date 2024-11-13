@@ -1,0 +1,115 @@
+main {
+    background-color: white;
+    
+}
+
+#wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+ul.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+}
+
+ul.products li {
+    flex-basis: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+ul.products li .product-item {
+    max-width: 100%;
+    margin: 20px;
+}
+
+ul.products li img {
+    height: auto;
+    width: 100%;
+}
+
+ul.products li .product-top {
+    position: relative;
+    overflow: hidden;
+}
+
+ul.products li .product-top .product-thumb {
+    display: block;
+}
+
+ul.products li:hover.product-top .product-thumb img {
+    filter: opacity(80%);
+}
+
+ul.products li .product-top .product-thumb img {
+    display: block;
+}
+
+ul.products li .product-top a.buy-now {
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 0px;
+    position: absolute;
+    width: 100%;
+    bottom: -40px;
+    transition: 0.25s ease-in-out;
+    opacity: 0.85;
+}
+
+ul.products li:hover a.buy-now {
+    bottom: 0px;
+}
+
+ul.products li .product-info {
+    padding: 10px 0px;
+}
+
+ul.products li .product-info a {
+    display: block;
+    text-decoration: none;
+}
+
+ul.products li .product-info a.product-cat {
+    font-size: 11px;
+    color: black;
+    text-transform: uppercase;
+    padding: 3px 0px;
+}
+
+ul.products li .product-info a.product-name {
+    color: red;
+    padding: 3px 0px;
+}
+
+ul.products li .product-info .product-price {
+    color: black;
+    padding: 2px 0px;
+    font-weight: 600;
+}
+
+.product-info>input[type="submit"] {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.product-info>input[type="submit"]:hover {
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.10);
+}

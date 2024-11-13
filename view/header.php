@@ -7,6 +7,8 @@
     <title>SNEAKLY</title>
     <link rel="stylesheet" href="layout/css/main.css">
     <link rel="stylesheet" href="layout/css/header.css">
+	<link rel="stylesheet" href="layout/css/product.css">
+
     <style>
        
     </style>
