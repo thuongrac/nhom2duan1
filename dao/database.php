@@ -1,11 +1,11 @@
 <?php
-$servername = "localhost:3307";
+$servername = "localhost:3306";
 $username = "root";
 $password = "";
 $database = "dulieumau"; // Đổi "ten_database" thành tên cơ sở dữ liệu của bạn
 
 // Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli(hostname: $servername, username: $username, password: $password, database: $database);
 
 // Kiểm tra kết nối và debug lỗi
 if ($conn->connect_error) {
@@ -14,19 +14,20 @@ if ($conn->connect_error) {
     // echo "Kết nối thành công!";
 }
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=duanmautest;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=dulieumau;charset=utf8";
     $username = 'root';
     $password = '';
 
     try {
-        $conn = new PDO($dburl, $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO($dburl, username: $username, password: $password);
+        $conn->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
         return $conn;
     } catch (PDOException $e) {
-        // Log or handle the error appropriately
-        die("Connection failed: " . $e->getMessage());
+        die("Kết nối thất bại: " . $e->getMessage());
     }
 }
+
+// Hàm thực hiện truy vấn và lấy một kết quả duy nhất
 function pdo_query_one($sql){
     $sql_args = array_slice(func_get_args(), 1);
     try {
@@ -36,10 +37,9 @@ function pdo_query_one($sql){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
     } catch (PDOException $e) {
-        // Log or handle the error appropriately
-        die("Query failed: " . $e->getMessage());
+        die("Truy vấn thất bại: " . $e->getMessage());
     } finally {
-        unset($conn);
+        unset($conn); // Đóng kết nối
     }
 }
 ?>
