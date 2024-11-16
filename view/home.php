@@ -138,6 +138,67 @@
     <h2>SẢN PHẨM MỚI</h2>
     <!-- <p>Summer Collection New Morden Design</p> -->
     <div class="pro-container">
-        <!--sản phẩm mới -->
-    </div>
+    <main class="main">
+            <div id="wrapper">
+                <ul class="products">
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="" class="product-thumb">
+                                    <img src="layout/img/img_hoai/g1.webp" alt="">
+                                </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
+                            </div>
+                            <div class="product-info">
+                                <a href="#" class="product-cat">Giày 1</a>
+                                <div class="product-price">10000</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="" class="product-thumb">
+                                    <img src="layout/img/img_hoai/g2.webp" alt="">
+                                </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
+                            </div>
+                            <div class="product-info">
+                                <a href="#" class="product-cat">Giày 2</a>
+                                <div class="product-price">10000</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="" class="product-thumb">
+                                    <img src="layout/img/img_hoai/g3.webp" alt="">
+                                </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
+                            </div>
+                            <div class="product-info">
+                                <a href="#" class="product-cat">Giày 3</a>
+                                <div class="product-price">10000</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="" class="product-thumb">
+                                    <img src="layout/img/img_hoai/g4.webp" alt="">
+                                </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
+                            </div>
+                            <div class="product-info">
+                                <a href="#" class="product-cat">Giày 4</a>
+                                <div class="product-price">10000</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+  </div>
 </section>
