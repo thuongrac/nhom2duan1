@@ -12,7 +12,7 @@ include "dao/sanpham.php";
 include "dao/user.php";
 
 //em ăn cơm chưa
-
+// ở nơi phương xa ấy, giờ này em biêt không
 // Im Hulk
 // Im @@@@@,....
 
