@@ -74,7 +74,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g1.webp" alt="">
+                                    <img src="public/upload/g1.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -88,7 +88,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g2.webp" alt="">
+                                    <img src="public/upload/g2.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -102,7 +102,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g3.webp" alt="">
+                                    <img src="public/upload/g3.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g4.webp" alt="">
+                                    <img src="public/upload/g4.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -144,7 +144,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g1.webp" alt="">
+                                    <img src="public/upload/g5.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -158,7 +158,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g2.webp" alt="">
+                                    <img src="public/upload/g6.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -172,7 +172,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g3.webp" alt="">
+                                    <img src="public/upload/g7.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
@@ -186,7 +186,7 @@
                         <div class="product-item">
                             <div class="product-top">
                                 <a href="" class="product-thumb">
-                                    <img src="layout/img/img_hoai/g4.webp" alt="">
+                                    <img src="public/upload/g8.webp" alt="">
                                 </a>
                                 <a href="#" class="buy-now">Mua ngay</a>
                             </div>
