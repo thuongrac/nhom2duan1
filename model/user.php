@@ -1,6 +1,6 @@
 <?php
 require_once 'database.php';
-session_start();
+// session_start();
 function check_login($taikhoan, $matkhau) {
     global $pdo;
 

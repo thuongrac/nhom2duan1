@@ -1,7 +1,7 @@
 
 <footer class="section-p1">
     <div class="col">
-        <img class="logo" src="layout/img/b1.jpg" alt="">
+        <img class="logo" src="./layout/img/img_hoai/nike gif.gif" alt="">
         <p><strong>Địa chỉ:</strong> 562 Đường Wellington, Phố 32, San Francisco</p>
         <p><strong>Điện thoại:</strong> +01 2222 365 /(+91) 01 2345 6789</p>
         <p><strong>Giờ làm việc:</strong> 10:00 - 18:00, Thứ Hai - Thứ Bảy</p>

@@ -136,7 +136,6 @@
 <section id="product1" class="section-p1">
 
     <h2>SẢN PHẨM MỚI</h2>
-    <!-- <p>Summer Collection New Morden Design</p> -->
     <div class="pro-container">
     <main class="main">
             <div id="wrapper">
@@ -202,3 +201,5 @@
         </main>
   </div>
 </section>
+
+<!-- @@@@ -->

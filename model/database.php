@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3306";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $database = "dulieumau"; // Đổi "ten_database" thành tên cơ sở dữ liệu của bạn

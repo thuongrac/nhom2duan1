@@ -1,10 +1,10 @@
 <?php
 session_start();
 ob_start();
-include "dao/database.php";
+include "model/database.php";
 include "view/header.php";
-include "dao/sanpham.php";
-include "dao/user.php";
+include "model/sanpham.php";
+include "model/user.php";
 
 
 $checkMK = 0; // Khởi tạo giá trị cho biến kiểm tra mật khẩu
