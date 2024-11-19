@@ -71,4 +71,5 @@ CREATE TABLE bill_chi_tiet (
 CREATE TABLE trang_thai_bill (
     id_trangthai INT PRIMARY KEY,
     trangthai VARCHAR(50)
+    
 );
