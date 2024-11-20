@@ -1,6 +1,6 @@
 <?php
 require_once 'database.php';
-// session_start();
+
 function check_login($taikhoan, $matkhau) {
     global $pdo;
 
@@ -17,4 +17,11 @@ function check_login($taikhoan, $matkhau) {
     return false; // Trả về false nếu không tìm thấy tài khoản hoặc mật khẩu sai
 }
 
+
+function is_username_taken($username) {
+    $stmt = pdo_get_connection()->prepare("SELECT COUNT(*) FROM user WHERE taikhoan = :taikhoan");
+    $stmt->bindParam(':taikhoan', $username);
+    $stmt->execute();
+    return $stmt->fetchColumn() > 0; // Trả về true nếu tài khoản đã tồn tại
+}
 ?>

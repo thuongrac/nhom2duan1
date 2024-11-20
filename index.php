@@ -1,11 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 ob_start();
 include "model/database.php";
 include "view/header.php";
 include "model/sanpham.php";
 include "model/user.php";
-
 
 $checkMK = 0; // Khởi tạo giá trị cho biến kiểm tra mật khẩu
 $saimatkhau = "";
@@ -29,8 +31,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] =
         $saimatkhau = "Sai mật khẩu";
     }
 }
+// Phần xử lý đăng ký
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] === 'dangky') {
+    $dienthoai = $_POST['dienthoai'];
+    $taikhoan = $_POST['username'];
+    $matkhau = $_POST['password'];
+    $success = ""; // Biến để lưu thông báo thành công
 
+    // Kiểm tra số điện thoại
+    if (!preg_match('/^0\d{9}$/', $dienthoai)) {
+        $error = "Số điện thoại phải có số 0 ở đầu và đúng 10 số.";
+    }
 
+    // Kiểm tra tài khoản và mật khẩu
+    if (strlen($taikhoan) < 6 || strlen($matkhau) < 6) {
+        $error = "Tên đăng nhập và mật khẩu phải có ít nhất 6 ký tự.";
+    }
+
+    // Kiểm tra xem tài khoản đã tồn tại chưa
+    if (empty($error) && is_username_taken($taikhoan)) {
+        $error = "Tên đăng nhập đã tồn tại.";
+    }
+
+    // Nếu không có lỗi, tiến hành đăng ký
+    if (empty($error)) {
+        // Mã hóa mật khẩu
+        $hashed_password = password_hash($matkhau, PASSWORD_DEFAULT);
+
+        // Thêm vào cơ sở dữ liệu
+        $stmt = pdo_get_connection()->prepare("INSERT INTO user (taikhoan, matkhau, sdt) VALUES (:taikhoan, :matkhau, :dienthoai)");
+        $stmt->bindParam(':taikhoan', $taikhoan);
+        $stmt->bindParam(':matkhau', $hashed_password);
+        $stmt->bindParam(':dienthoai', $dienthoai);
+
+        if ($stmt->execute()) {
+            $success = "Đăng ký thành công! Bạn sẽ được chuyển hướng đến trang đăng nhập trong 3 giây.";
+            // Tạo meta tag để tự động chuyển hướng
+            echo "<meta http-equiv='refresh' content='3;url=index.php?pg=dangnhap'>";
+        } else {
+            $error = "Đăng ký không thành công. Vui lòng thử lại.";
+        }
+    }
+
+    // Hiển thị thông báo lỗi hoặc thành công
+    if (!empty($error)) {
+        echo "<div class='notification error'>$error</div>";
+    } elseif (!empty($success)) {
+        echo "<div class='notification success'>$success</div>";
+    }
+}
+
+    //////////////////
 if (!isset($_GET['pg'])) {
     include "view/home.php";
 } else {
@@ -38,9 +89,9 @@ if (!isset($_GET['pg'])) {
         case 'dangnhap':
             include "view/dangnhap.php"; // Tải giao diện đăng nhập
             break;
-            case 'dangky':
-                include "view/dangky.php"; // Tải giao diện đăng nhập
-                break;
+        case 'dangky':
+            include "view/dangky.php"; // Tải giao diện đăng ký
+            break;
         case 'dangxuat':
             if (isset($_SESSION['user_id'])) {
                 session_unset();
