@@ -38,6 +38,9 @@ if (!isset($_GET['pg'])) {
         case 'dangnhap':
             include "view/dangnhap.php"; // Tải giao diện đăng nhập
             break;
+            case 'dangky':
+                include "view/dangky.php"; // Tải giao diện đăng nhập
+                break;
         case 'dangxuat':
             if (isset($_SESSION['user_id'])) {
                 session_unset();
