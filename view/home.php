@@ -1,7 +1,15 @@
 <?php
- 
- 
+include_once "model/database.php"; 
+
+$sql = "
+    SELECT sp.*, h.hinh, dm.tendanhmuc
+    FROM san_pham sp
+    LEFT JOIN hinh h ON sp.id_hinh = h.id_hinh
+    LEFT JOIN danh_muc dm ON sp.id_danhmuc = dm.id_danhmuc
+";
+$products = pdo_query_all($sql); 
 ?>
+
 
 
 <div class="slider-container">
@@ -13,56 +21,49 @@
         <a href="index.php?pg=shop"><button>Mua Ngay</button></a>
     </div>
     <div class="image-slider" id="imageSlider">
-        <!-- Your image slides go here -->
-        <img src="layout/img/b1.jpg" alt="Image 1">
-        <img src="layout/img/b2.jpg" alt="Image 2">
-        <img src="layout/img/b3.jpg" alt="Image 3">
-        <img src="layout/img/b4.jpg" alt="Image 4">
-        <!-- Add more images as needed -->
+        <img src="public/upload/b1.jpg" alt="Image 1">
+        <img src="public/upload/b2.jpg" alt="Image 2">
+        <img src="public/upload/b3.jpg" alt="Image 3">
+        <img src="public/upload/b4.jpg" alt="Image 4">
     </div>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const imageSlider = document.getElementById("imageSlider");
         const images = document.querySelectorAll(".image-slider img");
 
         let currentIndex = 0;
-
-        // Show the first image initially
         images[currentIndex].style.display = "block";
 
-        // Function to switch to the next image
         function nextImage() {
             images[currentIndex].style.display = "none";
             currentIndex = (currentIndex + 1) % images.length;
             images[currentIndex].style.display = "block";
         }
 
-        // Set an interval to switch images every 3 seconds (adjust as needed)
         setInterval(nextImage, 3000);
     });
-
 </script>
 
 <section id="feature" class="section-p1">
     <div class="fe-box">
-        <img src="layout/img/f1.png" alt="">
+        <img src="public/upload/f1.png" alt="">
         <h6>Miễn Phí Giao Hàng</h6>
     </div>
     <div class="fe-box">
-        <img src="layout/img/f2.png" alt="">
+        <img src="public/upload/f2.png" alt="">
         <h6>Đặt Hàng Online</h6>
     </div>
     <div class="fe-box">
-        <img src="layout/img/f3.png" alt="">
+        <img src="public/upload/f3.png" alt="">
         <h6>Tiết Kiệm Tiền</h6>
     </div>
     <div class="fe-box">
-        <img src="layout/img/f4.png" alt="">
+        <img src="public/upload/f4.png" alt="">
         <h6>Hỗ Trợ 24h</h6>
     </div>
 </section>
-
 
 <section id="product1" class="section-p1">
     <h2>SẢN PHẨM BÁN CHẠY</h2>
@@ -70,136 +71,59 @@
         <main class="main">
             <div id="wrapper">
                 <ul class="products">
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g1.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 1</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g2.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 2</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g3.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 3</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g4.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 4</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
+                    <?php if (!empty($products)) : ?>
+                        <?php foreach ($products as $product) : ?>
+                            <li>
+                                <div class="product-item">
+                                    <div class="product-top">
+                                        <a href="#" class="product-thumb">
+                                            <img src="public/upload/<?= htmlspecialchars($product['hinh']) ?>" alt="">
+                                        </a>
+                                        <a href="#" class="buy-now">Mua ngay</a>
+                                    </div>
+                                    <div class="product-info">
+                                    <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc']) ?></a>
+                                    <a href="#" class="product-cat"><?= htmlspecialchars($product['tensanpham']) ?></a>
+                                    <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div> 
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <p>Không có sản phẩm nào.</p>
+                    <?php endif; ?>
                 </ul>
             </div>
         </main>
     </div>
 </section>
 
-
-<section id="product1" class="section-p1">
-
+<section id="product2" class="section-p1">
     <h2>SẢN PHẨM MỚI</h2>
     <div class="pro-container">
-    <main class="main">
+        <main class="main">
             <div id="wrapper">
                 <ul class="products">
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g5.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
+                    <?php foreach ($products as $product) : ?>
+                        <li>
+                            <div class="product-item">
+                                <div class="product-top">
+                                    <!-- Hiển thị ảnh sản phẩm -->
+                                    <a href="#" class="product-thumb">
+                                        <img src="public/upload/<?= htmlspecialchars($product['hinh']) ?>" alt="">
+                                    </a>
+                                    <a href="#" class="buy-now">Mua ngay</a>
+                                </div>
+                                <div class="product-info">
+                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc']) ?></a>
+                                <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div> <!-- Thay 'gia' với tên cột giá -->
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 1</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g6.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 2</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g7.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 3</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="public/upload/g8.webp" alt="">
-                                </a>
-                                <a href="#" class="buy-now">Mua ngay</a>
-                            </div>
-                            <div class="product-info">
-                                <a href="#" class="product-cat">Giày 4</a>
-                                <div class="product-price">10000</div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </main>
-  </div>
+    </div>
 </section>
 
-<!-- @@@@ -->
