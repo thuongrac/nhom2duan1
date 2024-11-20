@@ -52,4 +52,7 @@ function pdo_query_one($sql) {
         unset($conn); 
     }
 }
+
+// Ví dụ sử dụng
+// $user = pdo_query_one("SELECT * FROM user WHERE taikhoan = ?", "username_example");
 ?>

@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 ob_start();
 
@@ -7,8 +10,8 @@ include "view/header.php";
 include "model/sanpham.php";
 include "model/user.php";
 
-// Biến kiểm tra lỗi đăng nhập
-$checkMK = 0; 
+
+$checkMK = 0; // Khởi tạo giá trị cho biến kiểm tra mật khẩu
 $saimatkhau = "";
 $saitaikhoan = "";
 
@@ -34,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] =
     }
 }
 
-// Xử lý điều hướng trang
+
 if (!isset($_GET['pg'])) {
     include "view/home.php"; // Trang mặc định là home
 } else {
@@ -42,7 +45,6 @@ if (!isset($_GET['pg'])) {
         case 'dangnhap':
             include "view/dangnhap.php"; // Giao diện đăng nhập
             break;
-
         case 'dangxuat':
             // Xử lý đăng xuất
             if (isset($_SESSION['user_id'])) {

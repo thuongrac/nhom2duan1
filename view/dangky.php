@@ -121,22 +121,35 @@
   }
 }
 
+
+.notification {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
     </style>
+    
 <section>
   <div id="login">
     <h3 class="login-title">Đăng Ký Hệ Thống</h3>
-   <center> <d>Bạn đã có tài khoản? <a href="index.php?pg=dangnhap" style="color:blue">Đăng Nhập</a></d></center>
+    <center><d>Bạn đã có tài khoản? <a href="index.php?pg=dangnhap" style="color:blue">Đăng Nhập</a></d></center>
     <form action="index.php?pg=dangky" method="POST" id="form-login">
-        <br>
+      <br>
       <!-- Các trường nhập liệu cho đăng ký -->
-      <div class="form-group-login">
-        <input type="text" name="hoten" id="hoten" class="email-ip" placeholder=" " required />
-        <label for="hoten">Họ Tên</label>
-      </div>
-      <div class="form-group-login">
-        <input type="email" name="email" id="email" class="email-ip" placeholder=" " required />
-        <label for="email">Email</label>
-      </div>
       <div class="form-group-login">
         <input type="tel" name="dienthoai" id="dienthoai" class="email-ip" placeholder=" " required />
         <label for="dienthoai">Số Điện Thoại</label>
