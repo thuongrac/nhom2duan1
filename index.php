@@ -101,6 +101,10 @@ if (!isset($_GET['pg'])) {
             }
             break;
 
+        case 'dangky':
+            include "view/dangky.php"; 
+            break;
+
         case 'sanpham':
             include "view/sanpham.php"; 
             break;

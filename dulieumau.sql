@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 19, 2024 lúc 03:06 AM
+-- Thời gian đã tạo: Th10 20, 2024 lúc 04:46 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -75,8 +75,18 @@ CREATE TABLE `bill_chi_tiet` (
 
 CREATE TABLE `danh_muc` (
   `id_danhmuc` int(11) NOT NULL,
-  `tendanhmuc` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `tendanhmuc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danh_muc`
+--
+
+INSERT INTO `danh_muc` (`id_danhmuc`, `tendanhmuc`) VALUES
+(1, 'Giày'),
+(2, 'Áo'),
+(3, 'Balo'),
+(4, 'Túi xách');
 
 -- --------------------------------------------------------
 
@@ -102,8 +112,22 @@ CREATE TABLE `gio_hang` (
 
 CREATE TABLE `hinh` (
   `id_hinh` int(11) NOT NULL,
-  `hinh` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `hinh` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hinh`
+--
+
+INSERT INTO `hinh` (`id_hinh`, `hinh`) VALUES
+(1, 'g1.webp'),
+(2, 'g2.webp'),
+(3, 'g3.webp'),
+(4, 'g4.webp'),
+(5, 'g5.webp'),
+(6, 'g6.webp'),
+(7, 'g7.webp'),
+(8, 'g8.webp');
 
 -- --------------------------------------------------------
 
@@ -121,6 +145,20 @@ CREATE TABLE `san_pham` (
   `ngay_tao` date DEFAULT NULL,
   `id_hinh` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `san_pham`
+--
+
+INSERT INTO `san_pham` (`id_sanpham`, `id_danhmuc`, `tensanpham`, `sale`, `gia`, `luot_mua`, `ngay_tao`, `id_hinh`) VALUES
+(1, 1, 'Giày Nike Air Force 1', 0.00, 2000000.00, 50, '2024-01-01', 1),
+(2, 1, 'Giày Adidas Ultraboost', 10.00, 2500000.00, 30, '2024-01-05', 2),
+(3, 1, 'Giày Puma Suede Classic', 15.00, 1800000.00, 40, '2024-02-10', 3),
+(4, 1, 'Giày Converse Chuck 70', 20.00, 1500000.00, 25, '2024-03-15', 4),
+(5, 1, 'Giày Vans Old Skool', 0.00, 1700000.00, 60, '2024-04-20', 5),
+(6, 1, 'Giày New Balance 327', 5.00, 2200000.00, 45, '2024-05-01', 6),
+(7, 1, 'Giày ASICS Gel-Kayano', 0.00, 2400000.00, 35, '2024-06-10', 7),
+(8, 1, 'Giày Reebok Classic', 10.00, 1600000.00, 20, '2024-07-15', 8);
 
 -- --------------------------------------------------------
 
@@ -226,6 +264,28 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `danh_muc`
+--
+ALTER TABLE `danh_muc`
+  MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `hinh`
+--
+ALTER TABLE `hinh`
+  MODIFY `id_hinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `san_pham`
+--
+ALTER TABLE `san_pham`
+  MODIFY `id_sanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- Các ràng buộc cho các bảng đã đổ
 --
 
@@ -233,8 +293,7 @@ ALTER TABLE `user`
 -- Các ràng buộc cho bảng `bai_viet`
 --
 ALTER TABLE `bai_viet`
-  ADD CONSTRAINT `bai_viet_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `bai_viet_ibfk_2` FOREIGN KEY (`id_sanpham`) REFERENCES `san_pham` (`id_sanpham`);
+  ADD CONSTRAINT `bai_viet_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Các ràng buộc cho bảng `bill`
@@ -247,22 +306,25 @@ ALTER TABLE `bill`
 -- Các ràng buộc cho bảng `bill_chi_tiet`
 --
 ALTER TABLE `bill_chi_tiet`
-  ADD CONSTRAINT `bill_chi_tiet_ibfk_1` FOREIGN KEY (`id_sanpham`) REFERENCES `san_pham` (`id_sanpham`),
   ADD CONSTRAINT `bill_chi_tiet_ibfk_2` FOREIGN KEY (`id_donhang`) REFERENCES `bill` (`id_bill`);
 
 --
 -- Các ràng buộc cho bảng `gio_hang`
 --
 ALTER TABLE `gio_hang`
-  ADD CONSTRAINT `gio_hang_ibfk_1` FOREIGN KEY (`id_sanpham`) REFERENCES `san_pham` (`id_sanpham`),
   ADD CONSTRAINT `gio_hang_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Các ràng buộc cho bảng `hinh`
+--
+ALTER TABLE `hinh`
+  ADD CONSTRAINT `sp_hinh` FOREIGN KEY (`id_hinh`) REFERENCES `san_pham` (`id_hinh`);
 
 --
 -- Các ràng buộc cho bảng `san_pham`
 --
 ALTER TABLE `san_pham`
-  ADD CONSTRAINT `san_pham_ibfk_1` FOREIGN KEY (`id_danhmuc`) REFERENCES `danh_muc` (`id_danhmuc`),
-  ADD CONSTRAINT `san_pham_ibfk_2` FOREIGN KEY (`id_hinh`) REFERENCES `hinh` (`id_hinh`);
+  ADD CONSTRAINT `dm_sp` FOREIGN KEY (`id_danhmuc`) REFERENCES `danh_muc` (`id_danhmuc`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
