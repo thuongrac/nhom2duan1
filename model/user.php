@@ -24,7 +24,6 @@ function check_login($taikhoan, $matkhau) {
     }
     return false; // Trả về false nếu không tìm thấy tài khoản hoặc mật khẩu không đúng
 }
-
 /**
  * Kiểm tra xem tên đăng nhập đã tồn tại hay chưa.
  *

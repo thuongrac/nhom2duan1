@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +9,6 @@
     <link rel="stylesheet" href="public/css/header.css">
 	<link rel="stylesheet" href="public/css/product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-       
-    </style>
 </head>
 <body>
 <header class="header">
@@ -33,38 +29,44 @@
                 <div class="col-md-12 col-lg-12">
                     <ul id="nav" class="nav">
                         <li class="nav-item has-childs">
-                            <a href="/san-pham-noi-bat" class="nav-link" title="DRESS SHOES">SẢN PHẨM <i class="fa fa-angle-down" data-toggle="dropdown"></i></a>			
+                            <a href="/san-pham-noi-bat" class="nav-link" title="DRESS SHOES">SẢN PHẨM</a>			
                             <ul class="dropdown-menu">
-                                <li class="nav-item-lv2"><a class="nav-link" href="/oxfords" title="OXFORD">Nam</a></li>
-                                <li class="nav-item-lv2"><a class="nav-link" href="/loafers" title="LOAFER">Nữ</a></li>
-                                <li class="nav-item-lv2"><a class="nav-link" href="/derby" title="DERBY">Khác</a></li>
+                                <a class="dropdown-item" href="">NAM</a>
+                                <a class="dropdown-item" href="">NỮ</a>
+                                <a class="dropdown-item" href="">SALE OFF</a>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NAM</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NỮ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">SALE OFF</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">TIN TỨC</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?pg=lienhe" title="STORES">LIÊN HỆ</a></li>
                         <li class="nav-item">
                             <?php if (isset($_SESSION['username'])): ?>
                                 <div class="dropdown">
-    <a class="nav-link dropdown-toggle" href="#" title="USER">
-        <i class="fas fa-user"></i> <!-- Thêm biểu tượng người dùng -->
-        <?php echo htmlspecialchars($_SESSION['username']); ?>
-    </a>
-    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="profile.php">Thông Tin Cá Nhân</a>
+                                    <a class="nav-link dropdown-toggle" href="#" title="USER">
+                                        <i class="fas fa-user"></i> 
+                                        <?php echo htmlspecialchars($_SESSION['username']); ?>
+                                    </a>
+                                    <div class="dropdown-menu"> 
+                                    <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
+                                        <a class="dropdown-item" href="admin.php">Trang Quản Trị</a>
+                                        <?php endif; ?>
+                                        <a class="dropdown-item" href="index.php?pg=profile">Thông Tin Cá Nhân</a>
                                         <a class="dropdown-item" href="index.php?pg=doimatkhau">Đổi Mật Khẩu</a>
                                         <a class="dropdown-item" href="index.php?pg=dangxuat">Đăng Xuất</a>
+                                       
                                     </div>
                                 </div>
                             <?php else: ?>
-                                <a class="nav-link" href="index.php?pg=dangnhap" title="STORES">TÀI KHOẢN</a>
+                                <a class="nav-link" href="index.php?pg=dangnhap" title="STORES"> <i class="fas fa-user"></i> TÀI KHOẢN</a>
+                                
+                                
                             <?php endif; ?>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES"><i class="fas fa-shopping-cart"></i> GIỎ HÀNG</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-
+</body>
+</html>
