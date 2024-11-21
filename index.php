@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] =
         // Lưu thông tin người dùng vào session
         $_SESSION['user_id'] = $user['id_user']; // Giả sử bạn có trường id_user trong bảng user
         $_SESSION['username'] = $user['taikhoan'];
+        $_SESSION['sdt'] = $user['sdt'];
+        $_SESSION['admin'] = $user['admin']; // Lưu quyền admin vào session
         $success = "Đăng nhập thành công! Bạn sẽ được chuyển hướng đến trang chính.";
         echo "<meta http-equiv='refresh' content='3;url=index.php'>";
     } else {
@@ -106,6 +108,12 @@ if (!isset($_GET['pg'])) {
         case 'doimatkhau':
             include "view/doimatkhau.php"; 
                 break;
+        case 'lienhe':
+            include "view/lienhe.php"; 
+                break;
+        case 'profile':
+            include "view/profile.php"; 
+               break;
         
         case 'sanpham':
             include "view/sanpham.php"; 
