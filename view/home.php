@@ -68,7 +68,7 @@ $products = pdo_query_all($sql);
 </section>
 
 <section id="product1" class="section-p1">
-    <h2>SẢN PHẨM BÁN CHẠY</h2>
+<center> <h2>SẢN PHẨM BÁN CHẠY</h2> </center>
     <div class="pro-container">
         <main class="main">
             <div id="wrapper">
@@ -101,7 +101,7 @@ $products = pdo_query_all($sql);
 </section>
 
 <section id="product2" class="section-p1">
-    <h2>SẢN PHẨM MỚI</h2>
+<center> <h2>SẢN PHẨM MỚI</h2></center>
     <div class="pro-container">
         <main class="main">
             <div id="wrapper">

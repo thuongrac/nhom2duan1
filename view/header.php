@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="public/css/main.css">
     <link rel="stylesheet" href="public/css/header.css">
 	<link rel="stylesheet" href="public/css/product.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
        
     </style>
@@ -45,10 +46,13 @@
                         <li class="nav-item">
                             <?php if (isset($_SESSION['username'])): ?>
                                 <div class="dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" title="USER"><?php echo htmlspecialchars($_SESSION['username']); ?></a>
-                                    <div class="dropdown-menu">
+    <a class="nav-link dropdown-toggle" href="#" title="USER">
+        <i class="fas fa-user"></i> <!-- Thêm biểu tượng người dùng -->
+        <?php echo htmlspecialchars($_SESSION['username']); ?>
+    </a>
+    <div class="dropdown-menu">
                                         <a class="dropdown-item" href="profile.php">Thông Tin Cá Nhân</a>
-                                        <a class="dropdown-item" href="change-password.php">Đổi Mật Khẩu</a>
+                                        <a class="dropdown-item" href="index.php?pg=doimatkhau">Đổi Mật Khẩu</a>
                                         <a class="dropdown-item" href="index.php?pg=dangxuat">Đăng Xuất</a>
                                     </div>
                                 </div>

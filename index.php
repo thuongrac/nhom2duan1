@@ -11,34 +11,40 @@ include "model/sanpham.php";
 include "model/user.php";
 
 
-$checkMK = 0; // Khởi tạo giá trị cho biến kiểm tra mật khẩu
-$saimatkhau = "";
-$saitaikhoan = "";
-
-// Kiểm tra đăng nhập
+// Phần xử lý đăng nhập
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] === 'dangnhap') {
-    $taikhoan = $_POST['taikhoan'];
-    $matkhau = $_POST['matkhau'];
+    $taikhoan = $_POST['username'];
+    $matkhau = $_POST['password'];
+    $error = ""; // Biến để lưu thông báo lỗi
+    $success = ""; // Biến để lưu thông báo thành công
 
-    // Kiểm tra tài khoản và mật khẩu
-    $user = check_login($taikhoan, $matkhau); // Hàm check_login sẽ trả về thông tin người dùng nếu đúng
-
+    // Kiểm tra thông tin đăng nhập
+    $user = check_login($taikhoan, $matkhau);
     if ($user) {
-        $_SESSION['user_id'] = $user['id_user'];
-        $_SESSION['taikhoan'] = $user['taikhoan'];
-        header("Location: index.php"); // Redirect về trang chủ sau khi đăng nhập thành công
-        exit();
+        // Lưu thông tin người dùng vào session
+        $_SESSION['user_id'] = $user['id_user']; // Giả sử bạn có trường id_user trong bảng user
+        $_SESSION['username'] = $user['taikhoan'];
+        $success = "Đăng nhập thành công! Bạn sẽ được chuyển hướng đến trang chính.";
+        echo "<meta http-equiv='refresh' content='3;url=index.php'>";
     } else {
-        $checkMK = 1; // Đặt mã lỗi nếu sai mật khẩu
-        $saimatkhau = "Sai mật khẩu";
+        $error = "Tên đăng nhập hoặc mật khẩu không chính xác.";
+    }
+
+    // Hiển thị thông báo lỗi hoặc thành công
+    if (!empty($error)) {
+        echo "<div class='notification error'>$error</div>";
+    } elseif (!empty($success)) {
+        echo "<div class='notification success'>$success</div>";
     }
 }
+
+
 // Phần xử lý đăng ký
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['pg']) && $_GET['pg'] === 'dangky') {
     $dienthoai = $_POST['dienthoai'];
     $taikhoan = $_POST['username'];
     $matkhau = $_POST['password'];
-    $success = ""; // Biến để lưu thông báo thành công
+    $success = ""; // Biến để lưu thông báo thành công  
 
     // Kiểm tra số điện thoại
     if (!preg_match('/^0\d{9}$/', $dienthoai)) {
@@ -92,19 +98,16 @@ if (!isset($_GET['pg'])) {
             include "view/dangnhap.php"; // Giao diện đăng nhập
             break;
         case 'dangxuat':
-            // Xử lý đăng xuất
-            if (isset($_SESSION['user_id'])) {
-                session_unset();
-                session_destroy();
-                header("Location: index.php");
-                exit();
-            }
+            include "view/logout.php"; 
             break;
 
         case 'dangky':
             include "view/dangky.php"; 
             break;
-
+        case 'doimatkhau':
+            include "view/doimatkhau.php"; 
+                break;
+        
         case 'sanpham':
             include "view/sanpham.php"; 
             break;
