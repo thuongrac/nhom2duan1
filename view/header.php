@@ -15,79 +15,52 @@
 </head>
 <body>
 <header class="header">
-	<div class="container"> 
-		
-			<div class="col-md-4 col-sm-12 col-xs-12 evo-header-mobile">
-				<!-- <button type="button" class="evo-flexitem evo-flexitem-fill navbar-toggle collapsed visible-sm visible-xs" id="trigger-mobile"> -->
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<div class="logo evo-flexitem evo-flexitem-fill">
-					<a href="index.php" class="logo-wrapper" title="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng">
-						<img src="//bizweb.dktcdn.net/100/292/624/themes/758446/assets/logo.png?1730449446707" data-lazyload="//bizweb.dktcdn.net/100/292/624/themes/758446/assets/logo.png?1730449446707" alt="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng" class="img-responsive center-block">
-					</a>
-				</div>
-				
-			</div>
-			
-	<div class="container nav-evo-watch"> 
-		<div class="row">
-			<div class="col-md-12 col-lg-12">
-				<ul id="nav" class="nav">
-	
-	
-	
-	
-	
-	
-	<li class=" nav-item has-childs ">
-		<a href="/san-pham-noi-bat" class="nav-link" title="DRESS SHOES">SẢN PHẨM <i class="fa fa-angle-down" data-toggle="dropdown"></i></a>			
-					
-		<ul class="dropdown-menu">
-			
-			
-			<li class="nav-item-lv2"><a class="nav-link" href="/oxfords" title="OXFORD">Nam</a></li>
-			
-			
-			
-			<li class="nav-item-lv2"><a class="nav-link" href="/loafers" title="LOAFER">Nữ</a></li>
-			
-			
-			
-			<li class="nav-item-lv2"><a class="nav-link" href="/derby" title="DERBY">Khác</a></li>
-			
-		</ul>
-		
-	</li>
-	
-	
-
-	
-	
-    <li class="nav-item "><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NAM</a></li>
-	
-    <li class="nav-item "><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NỮ</a></li>
-	
-	<li class="nav-item "><a class="nav-link" href="/he-thong-cua-hang" title="STORES">SALE OFF</a></li>
-	<li class="nav-item "><a class="nav-link" href="index.php?pg=dangnhap" title="STORES">TÀI KHOẢN</a></li>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-</ul>
-			</div>
-		</div>
-	</div>
+    <div class="container"> 
+        <div class="col-md-4 col-sm-12 col-xs-12 evo-header-mobile">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <div class="logo evo-flexitem evo-flexitem-fill">
+                <a href="index.php" class="logo-wrapper" title="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng">
+                    <img src="public/upload/logo.png" data-lazyload="//bizweb.dktcdn.net/100/292/624/themes/758446/assets/logo.png?1730449446707" alt="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng" class="img-responsive center-block">
+                </a>
+            </div>
+        </div>
+        
+        <div class="container nav-evo-watch"> 
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <ul id="nav" class="nav">
+                        <li class="nav-item has-childs">
+                            <a href="/san-pham-noi-bat" class="nav-link" title="DRESS SHOES">SẢN PHẨM <i class="fa fa-angle-down" data-toggle="dropdown"></i></a>			
+                            <ul class="dropdown-menu">
+                                <li class="nav-item-lv2"><a class="nav-link" href="/oxfords" title="OXFORD">Nam</a></li>
+                                <li class="nav-item-lv2"><a class="nav-link" href="/loafers" title="LOAFER">Nữ</a></li>
+                                <li class="nav-item-lv2"><a class="nav-link" href="/derby" title="DERBY">Khác</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NAM</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">NỮ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/he-thong-cua-hang" title="STORES">SALE OFF</a></li>
+                        <li class="nav-item">
+                            <?php if (isset($_SESSION['username'])): ?>
+                                <div class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" title="USER"><?php echo htmlspecialchars($_SESSION['username']); ?></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="profile.php">Thông Tin Cá Nhân</a>
+                                        <a class="dropdown-item" href="change-password.php">Đổi Mật Khẩu</a>
+                                        <a class="dropdown-item" href="index.php?pg=dangxuat">Đăng Xuất</a>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <a class="nav-link" href="index.php?pg=dangnhap" title="STORES">TÀI KHOẢN</a>
+                            <?php endif; ?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
-
 
 

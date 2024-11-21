@@ -21,10 +21,12 @@ $products = pdo_query_all($sql);
         <a href="index.php?pg=shop"><button>Mua Ngay</button></a>
     </div>
     <div class="image-slider" id="imageSlider">
-        <img src="public/upload/b1.jpg" alt="Image 1">
-        <img src="public/upload/b2.jpg" alt="Image 2">
-        <img src="public/upload/b3.jpg" alt="Image 3">
-        <img src="public/upload/b4.jpg" alt="Image 4">
+        <!-- Your image slides go here -->
+        <img src="layout/img/b1.jpg" alt="Image 1">
+        <img src="layout/img/b2.jpg" alt="Image 2">
+        <img src="layout/img/b3.jpg" alt="Image 3">
+        <img src="layout/img/b4.jpg" alt="Image 4">
+        <!-- Add more images as needed -->
     </div>
 </div>
 

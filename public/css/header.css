@@ -140,3 +140,37 @@
     color: #000;
   }
   
+
+  /* .......... */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none; /* Hide dropdown by default */
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1; /* Change background on hover */
+}
