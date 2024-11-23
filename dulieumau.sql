@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 20, 2024 lúc 04:46 PM
+-- Thời gian đã tạo: Th10 23, 2024 lúc 03:10 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bai_viet` (
   `id_baiviet` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
   `id_sanpham` int(11) DEFAULT NULL,
   `noidung` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -42,7 +42,7 @@ CREATE TABLE `bai_viet` (
 
 CREATE TABLE `bill` (
   `id_bill` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
   `ten` varchar(255) DEFAULT NULL,
   `dienthoai` varchar(20) DEFAULT NULL,
   `diachi` varchar(255) DEFAULT NULL,
@@ -127,7 +127,31 @@ INSERT INTO `hinh` (`id_hinh`, `hinh`) VALUES
 (5, 'g5.webp'),
 (6, 'g6.webp'),
 (7, 'g7.webp'),
-(8, 'g8.webp');
+(8, 'g8.webp'),
+(9, 'g9.webp'),
+(10, 'g10.webp'),
+(11, 'g11.webp'),
+(12, 'g12.webp'),
+(13, 'g13.webp'),
+(14, 'g14.webp'),
+(15, 'g15.webp'),
+(16, 'g16.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `date` datetime DEFAULT current_timestamp(),
+  `view` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -155,10 +179,18 @@ INSERT INTO `san_pham` (`id_sanpham`, `id_danhmuc`, `tensanpham`, `sale`, `gia`,
 (2, 1, 'Giày Adidas Ultraboost', 10.00, 2500000.00, 30, '2024-01-05', 2),
 (3, 1, 'Giày Puma Suede Classic', 15.00, 1800000.00, 40, '2024-02-10', 3),
 (4, 1, 'Giày Converse Chuck 70', 20.00, 1500000.00, 25, '2024-03-15', 4),
-(5, 1, 'Giày Vans Old Skool', 0.00, 1700000.00, 60, '2024-04-20', 5),
+(5, 1, 'Giày Vans Old Skool', 15.00, 1700000.00, 60, '2024-04-20', 5),
 (6, 1, 'Giày New Balance 327', 5.00, 2200000.00, 45, '2024-05-01', 6),
-(7, 1, 'Giày ASICS Gel-Kayano', 0.00, 2400000.00, 35, '2024-06-10', 7),
-(8, 1, 'Giày Reebok Classic', 10.00, 1600000.00, 20, '2024-07-15', 8);
+(7, 1, 'Giày ASICS Gel-Kayano', 30.00, 2400000.00, 35, '2024-06-10', 7),
+(8, 1, 'Giày Reebok Classic', 10.00, 1600000.00, 20, '2024-07-15', 8),
+(9, 1, 'Giày Urban Step', 0.00, 1100000.00, 50, '2024-01-01', 9),
+(10, 1, 'Giày Velocity Vibe', 10.00, 2200000.00, 30, '2024-01-05', 10),
+(11, 1, 'Giày Trail Blazer', 15.00, 3300000.00, 40, '2024-02-10', 11),
+(12, 1, 'Giày Edge Runner', 20.00, 4400000.00, 25, '2024-03-15', 12),
+(13, 1, 'Giày Aero Glide', 0.00, 5500000.00, 60, '2024-04-20', 13),
+(14, 1, 'Giày Fusion Force', 5.00, 6600000.00, 45, '2024-05-01', 14),
+(15, 1, 'Giày Stride Swift', 0.00, 7700000.00, 35, '2024-06-10', 15),
+(16, 1, 'Giày Momentum Max', 10.00, 8800000.00, 20, '2024-07-15', 16);
 
 -- --------------------------------------------------------
 
@@ -193,7 +225,13 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `taikhoan`, `matkhau`, `sdt`, `ban`, `admin`) VALUES
 (1, 'admin', 'admin', '0123456789', 0, 1),
 (2, 'tranthib', 'abc12345', '0987654321', 0, 0),
-(3, 'phamvanh', 'pass6789', '0912345678', 1, 0);
+(3, 'phamvanh', 'pass6789', '0912345678', 1, 0),
+(4, '0913515617', '$2y$10$XEPH./0Si0.LJ4y1m7eXHuutk4HvVcBLcpKbQ5BaWBIP4vcP0f7s.', '0913515617', NULL, NULL),
+(5, '0913515619', '$2y$10$ZFFXy/4rXzEckd9yDCas0OPYBcBzha6lyAWvpiaRUwlqoFIaIdKfy', '0913515619', NULL, NULL),
+(6, '0913515699', '$2y$10$M.Io1Fa2DvRDX8alceuHN./Wdgqv2ApsBl2k1I8LD06i7K9/A54Q2', '0913515699', NULL, NULL),
+(7, '0913515666', '$2y$10$noGKcM9im9icrmEOzL749ebDrU/O2tCL.NQQBUYZrd2ldhADVarXi', '0913515666', NULL, NULL),
+(8, 'thanhhoai', '$2y$10$YmAdp/IQ05jk788y5Mem4uRaTpQsO5lYiC4lwu04JkTmPXPgBOf3.', '0865184037', NULL, NULL),
+(9, 'nth123', '$2y$10$d5q4cyOY7BF9EAcobDv1j.toIicDZpdaUakcINWzhtWQaivnnLS0S', '0865184037', NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -268,6 +306,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `bai_viet`
+--
+ALTER TABLE `bai_viet`
+  MODIFY `id_baiviet` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `bill_chi_tiet`
+--
+ALTER TABLE `bill_chi_tiet`
+  MODIFY `id_billchitiet` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `danh_muc`
 --
 ALTER TABLE `danh_muc`
@@ -277,13 +327,19 @@ ALTER TABLE `danh_muc`
 -- AUTO_INCREMENT cho bảng `hinh`
 --
 ALTER TABLE `hinh`
-  MODIFY `id_hinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_hinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `san_pham`
 --
 ALTER TABLE `san_pham`
-  MODIFY `id_sanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_sanpham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -293,14 +349,14 @@ ALTER TABLE `san_pham`
 -- Các ràng buộc cho bảng `bai_viet`
 --
 ALTER TABLE `bai_viet`
-  ADD CONSTRAINT `bai_viet_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `bv_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `bill_trtbill` FOREIGN KEY (`trangthai`) REFERENCES `trang_thai_bill` (`id_trangthai`);
+  ADD CONSTRAINT `bill_trtbill` FOREIGN KEY (`trangthai`) REFERENCES `trang_thai_bill` (`id_trangthai`),
+  ADD CONSTRAINT `bill_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Các ràng buộc cho bảng `bill_chi_tiet`
@@ -312,7 +368,8 @@ ALTER TABLE `bill_chi_tiet`
 -- Các ràng buộc cho bảng `gio_hang`
 --
 ALTER TABLE `gio_hang`
-  ADD CONSTRAINT `gio_hang_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `gh_sp` FOREIGN KEY (`id_sanpham`) REFERENCES `san_pham` (`id_sanpham`),
+  ADD CONSTRAINT `gh_usver` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Các ràng buộc cho bảng `hinh`
