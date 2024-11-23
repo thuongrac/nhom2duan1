@@ -49,7 +49,7 @@
                                     </a>
                                     <div class="dropdown-menu"> 
                                     <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
-                                        <a class="dropdown-item" href="admin.php">Trang Quản Trị</a>
+                                        <a class="dropdown-item" href="admin">Trang Quản Trị</a>
                                         <?php endif; ?>
                                         <a class="dropdown-item" href="index.php?pg=profile">Thông Tin Cá Nhân</a>
                                         <a class="dropdown-item" href="index.php?pg=doimatkhau">Đổi Mật Khẩu</a>
