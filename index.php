@@ -123,6 +123,10 @@ if (!isset($_GET['pg'])) {
         case 'giohang':
             include "view/giohang.php"; 
             break;
+    
+        case 'chitietsp':
+            include "view/chitietsp.php"; 
+            break;
 
         case 'thanhtoan':
             include "view/thanhtoan.php"; 
