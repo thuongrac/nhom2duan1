@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.php?page=product">
+                    <a href="index.php?page=sanpham">
                     <i class="fa-solid fa-heart"></i>
                         <p>Sản phẩm</p>
                     </a>
