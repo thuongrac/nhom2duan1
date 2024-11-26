@@ -10,6 +10,7 @@ $database = "dulieumau";
 function pdo_get_connection() {
     global $servername, $port, $username, $password, $database;
     $dsn = "mysql:host=$servername;port=$port;dbname=$database;charset=utf8";
+
     try {
         $conn = new PDO($dsn, $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -46,4 +47,6 @@ function pdo_query_one($sql) {
         unset($conn); 
     }
 }
+
+
 ?>

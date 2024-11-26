@@ -1,64 +1,37 @@
 <?php
-require_once('../app/model/database.php');
 
-require_once ('../app/model/ProductModel.php');
-require_once ('./app/controller/AdProductController.php');
-require_once ('./app/controller/AdCategoryController.php');
-require_once ('./app/controller/AdUserController.php');
-require_once ('./app/controller/AdOrderController.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-require_once ('./app/view/header.php');
+session_start();
 
-if (isset($_GET['page'])){
+// Kiểm tra xem người dùng đã đăng nhập và có quyền admin
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
+    $error_message = "Bạn không có quyền truy cập vào trang admin.";
+    echo "<div class='notification error'>$error_message</div>";
+    exit;
+}
+require_once('../model/database.php'); // Đường dẫn chính xác đến database.php
+require_once('./app/model/usermodel.php'); // Đường dẫn chính xác đến usermodel.php
+require_once('./app/view/header.php');
+// require_once('./app/controller/update_user.php');
+
+if (isset($_GET['page'])) {
     $page = $_GET['page'];
     switch ($page) {
-        case 'addpro':
-            $add = new AdProductController();
-            $add->viewAdd();
+        case 'user':
+            $userModel = new UserModel();
+            $data['user'] = $userModel->getAllUsers();
+            require_once('app/view/userview.php'); // Đường dẫn đến userview.php
             break;
-        case 'add':
-            $product = new AdProductController();
-            $product->addPro(); 
-            break;
-        case 'editpro':
-            $edit = new AdProductController();
-            $edit->viewEdit($_GET['id']);
-            break;
-        case 'updatepro':
-            $update = new AdProductController();
-            $update->updatePro();
-            break;
-        case 'delpro':
-            $del = new AdProductController();
-            $del->delPro();
-            break;
-        case 'cate':
-            $cate = new AdCategoryController();
-            $cate->getCategory();
-            break;
-        case 'product':
-            $pro = new AdProductController();
-            $pro->viewPro();
-            break;
-
-            case 'user':
-                $userController = new AdUserController();
-                $userController->viewUsers();
-                break;
-
-            case 'order':
-                $order = new AdOrderController();
-                $order->viewOrders();
-                break;
+           
         default:
-            $product = new AdProductController();
-            $product->viewPro();
+            // Xử lý các trang khác
             break;
     }
 } else {
-    $product = new AdProductController();
-    $product->viewPro();
+    // Xử lý khi không có trang cụ thể
 }
 
-require_once('app/view/footer.php');
+require_once('./app/view/footer.php');
 ?>

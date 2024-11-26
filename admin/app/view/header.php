@@ -21,7 +21,7 @@
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="./public/css/demo.css" rel="stylesheet" />
+   
 
 
     <!--     Fonts and icons     -->
