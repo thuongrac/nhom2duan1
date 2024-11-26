@@ -1,14 +1,11 @@
 <?php
 include_once "model/database.php"; 
+require_once "controller/ProductController.php";
 
-$sql = "
-    SELECT sp.*, h.hinh, dm.tendanhmuc, 
-           (sp.gia - (sp.gia * sp.sale / 100))
-    FROM san_pham sp
-    LEFT JOIN hinh h ON sp.id_hinh = h.id_hinh
-    LEFT JOIN danh_muc dm ON sp.id_danhmuc = dm.id_danhmuc
-";
-$products = pdo_query_all($sql); 
+$productController = new ProductController();
+$bestSellingProducts = $productController->getBestSellingProducts();
+$newProducts = $productController->getNewProducts();
+
 ?>
 
 
@@ -69,67 +66,61 @@ $products = pdo_query_all($sql);
 </section>
 
 <section id="product1" class="section-p1">
-<center> <h2>SẢN PHẨM BÁN CHẠY</h2> </center>
+    <center><h2>SẢN PHẨM BÁN CHẠY</h2></center>
     <div class="pro-container">
-        <main class="main">
-            <div id="wrapper">
-                <ul class="products">
-                    <?php if (!empty($products)) : ?>
-                        <?php foreach ($products as $product) : ?>
-                            <li>
-                                <div class="product-item">
-                                    <div class="product-top">
-                                    <a href="index.php?pg=chitietsp&id=<?= htmlspecialchars($product['id_sanpham']) ?>" class="product-thumb">
-                                        <img src="public/upload/<?= htmlspecialchars($product['hinh']) ?>" alt="">
-                                </a>
-                                        <a href="" class="buy-now">Mua ngay</a>
-                                    </div>
-                                    <div class="product-info">
-                                    <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc']) ?></a>
-                                    <a href="#" class="product-cat"><?= htmlspecialchars($product['tensanpham']) ?></a>
-                                    <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div> 
-                                    <!-- <div class="product-price"><?= number_format($product['sale'], 0, ',', '.') ?> %</div>  -->
-
-                                    </div>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <p>Không có sản phẩm nào.</p>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </main>
+        <ul class="products">
+            <?php if (!empty($bestSellingProducts)) : ?>
+                <?php foreach ($bestSellingProducts as $product) : ?>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                            <a href="index.php?pg=chitietsp&id=<?= htmlspecialchars($product['id_sanpham']) ?>" class="product-thumb">
+                                <img src="public/upload/<?= htmlspecialchars($product['hinh'] ?? 'default.png') ?>" alt="">
+                            </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
+                            </div>
+                            <div class="product-info">
+                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc'] ?? 'Không rõ danh mục') ?></a>
+                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tensanpham'] ?? 'Không tên') ?></a>
+                                <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Không có sản phẩm nào.</p>
+            <?php endif; ?>
+        </ul>
     </div>
 </section>
 
 <section id="product2" class="section-p1">
-<center> <h2>SẢN PHẨM MỚI</h2></center>
+    <center><h2>SẢN PHẨM MỚI</h2></center>
     <div class="pro-container">
-        <main class="main">
-            <div id="wrapper">
-                <ul class="products">
-                    <?php foreach ($products as $product) : ?>
-                        <li>
-                            <div class="product-item">
-                                <div class="product-top">
-                                    <!-- Hiển thị ảnh sản phẩm -->
-                                    <a href="#" class="product-thumb">
-                                        <img src="public/upload/<?= htmlspecialchars($product['hinh']) ?>" alt="">
-                                    </a>
-                                    <a href="#" class="buy-now">Mua ngay</a>
-                                </div>
-                                <div class="product-info">
-                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc']) ?></a>
-                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tensanpham']) ?></a>
-                                <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div> <!-- Thay 'gia' với tên cột giá -->
-                                </div>
+        <ul class="products">
+            <?php if (!empty($newProducts)) : ?>
+                <?php foreach ($newProducts as $product) : ?>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="index.php?pg=chitietsp&id=<?= htmlspecialchars($product['id_sanpham']) ?>" class="product-thumb">
+                                    <img src="public/upload/<?= htmlspecialchars($product['hinh'] ?? 'default.png') ?>" alt="">
+                                </a>
+                                <a href="#" class="buy-now">Mua ngay</a>
                             </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </main>
+                            <div class="product-info">
+                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tendanhmuc'] ?? 'Không rõ danh mục') ?></a>
+                                <a href="#" class="product-cat"><?= htmlspecialchars($product['tensanpham'] ?? 'Không tên') ?></a>
+                                <div class="product-price"><?= number_format($product['gia'], 0, ',', '.') ?> VND</div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Không có sản phẩm nào.</p>
+            <?php endif; ?>
+        </ul>
     </div>
 </section>
+
 

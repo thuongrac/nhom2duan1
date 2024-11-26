@@ -1,21 +1,15 @@
 <?php
+
+// Cấu hình kết nối
 $servername = "localhost";
-$port = 3307; 
+$port = 3307;
 $username = "root";
 $password = "";
-$database = "dulieumau"; 
-
-$conn = new mysqli($servername, $username, $password, $database, $port);
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+$database = "dulieumau";
 
 function pdo_get_connection() {
-    $dsn = "mysql:host=localhost;port=3307;dbname=dulieumau;charset=utf8";
-    $username = 'root';
-    $password = '';
-
+    global $servername, $port, $username, $password, $database;
+    $dsn = "mysql:host=$servername;port=$port;dbname=$database;charset=utf8";
     try {
         $conn = new PDO($dsn, $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -52,7 +46,4 @@ function pdo_query_one($sql) {
         unset($conn); 
     }
 }
-
-// Ví dụ sử dụng
-// $user = pdo_query_one("SELECT * FROM user WHERE taikhoan = ?", "username_example");
 ?>
