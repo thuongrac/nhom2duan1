@@ -30,6 +30,9 @@ class ProductModel {
             LEFT JOIN danh_muc dm ON sp.id_danhmuc = dm.id_danhmuc
             ORDER BY sp.id_sanpham ASC LIMIT 8 OFFSET 8
         ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function getAllProducts() {

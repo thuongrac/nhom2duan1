@@ -79,7 +79,7 @@
                 </li>
 
                 <li>
-                    <a href="http://localhost:8081/dam/">
+                    <a href="http://localhost:8081/nhom2duan1/">
                     <i class="fa-solid fa-house"></i>
                         <p>Trang chủ</p>
                     </a>
