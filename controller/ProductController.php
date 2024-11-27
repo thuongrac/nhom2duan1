@@ -34,5 +34,11 @@ class ProductController {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
+    public function getRelatedProducts($categoryId, $productId) {
+        $query = "SELECT * FROM products WHERE category_id = :categoryId AND id != :productId LIMIT 4";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['categoryId' => $categoryId, 'productId' => $productId]);
+        return $stmt->fetchAll();
+    }
 }
 ?>

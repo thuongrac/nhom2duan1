@@ -1,7 +1,8 @@
 <?php
 include_once "model/database.php";
 require_once "controller/ProductController.php";
-
+$productController = new ProductController();
+$newProducts = $productController->getNewProducts();
 $productId = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($productId) {
@@ -52,9 +53,8 @@ if ($productId) {
         </div>
       </div>
       <div class="related-products">
-        <h2>Sản phẩm liên quan</h2>
         <section id="product2" class="section-p1">
-    <center><h2>SẢN PHẨM MỚI</h2></center>
+    <center><h2>Sản phẩm liên quan</h2></center>
     <div class="pro-container">
         <ul class="products">
             <?php if (!empty($newProducts)) : ?>
