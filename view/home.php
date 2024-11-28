@@ -46,24 +46,6 @@ $newProducts = $productController->getNewProducts();
     });
 </script>
 
-<section id="feature" class="section-p1">
-    <div class="fe-box">
-        <img src="public/upload/f1.png" alt="">
-        <h6>Miễn Phí Giao Hàng</h6>
-    </div>
-    <div class="fe-box">
-        <img src="public/upload/f2.png" alt="">
-        <h6>Đặt Hàng Online</h6>
-    </div>
-    <div class="fe-box">
-        <img src="public/upload/f3.png" alt="">
-        <h6>Tiết Kiệm Tiền</h6>
-    </div>
-    <div class="fe-box">
-        <img src="public/upload/f4.png" alt="">
-        <h6>Hỗ Trợ 24h</h6>
-    </div>
-</section>
 
 <section id="product1" class="section-p1">
     <center><h2>SẢN PHẨM BÁN CHẠY</h2></center>
@@ -123,4 +105,22 @@ $newProducts = $productController->getNewProducts();
     </div>
 </section>
 
+<section id="feature" class="section-p1">
+    <div class="fe-box">
+        <img src="public/upload/f1.png" alt="">
+        <h6>Miễn Phí Giao Hàng</h6>
+    </div>
+    <div class="fe-box">
+        <img src="public/upload/f2.png" alt="">
+        <h6>Đặt Hàng Online</h6>
+    </div>
+    <div class="fe-box">
+        <img src="public/upload/f3.png" alt="">
+        <h6>Tiết Kiệm Tiền</h6>
+    </div>
+    <div class="fe-box">
+        <img src="public/upload/f4.png" alt="">
+        <h6>Hỗ Trợ 24h</h6>
+    </div>
+</section>
 

@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <div class="logo evo-flexitem evo-flexitem-fill">
                 <a href="index.php" class="logo-wrapper" title="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng">
-                    <img src="public/upload/logo.png" data-lazyload="//bizweb.dktcdn.net/100/292/624/themes/758446/assets/logo.png?1730449446707" alt="Be Classy - Giày Da Nam, Giày Tây Nam Sang Trọng" class="img-responsive center-block">
+                <img src="public/upload/logo.png" alt="SNEAKLY - Giày Sneaker Chính Hãng" class="img-responsive center-block">
                 </a>
             </div>
         </div>
@@ -31,6 +31,7 @@
                 <div class="col-md-12 col-lg-12">
                     <ul id="nav" class="nav">
                         <li class="nav-item has-childs">
+                            
                             <a href="/san-pham-noi-bat" class="nav-link" title="DRESS SHOES">SẢN PHẨM</a>			
                             <ul class="dropdown-menu">
                                 <a class="dropdown-item" href="">NAM</a>
