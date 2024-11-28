@@ -1,143 +1,171 @@
+
+
 <style>
-    /* Tổng quan về phần đăng nhập */
-#login {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   /* Đặt một số kiểu cho phần chứa biểu mẫu */
+   #login {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-#login h3 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+#login h3.login-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 #login p {
-    text-align: center;
-    font-size: 14px;
-    color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
-/* Style cho các nhóm input */
+#login p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#login p a:hover {
+  text-decoration: underline;
+}
+
+/* Các nhóm trường nhập liệu */
 .form-group-login {
-    margin-bottom: 15px;
+  position: relative;
+  margin-bottom: 20px;
 }
 
-/* Style cho các input */
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
+.form-group-login input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
 }
 
-/* Style cho các icon mắt */
+.form-group-login input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form-group-login label {
+  position: absolute;
+  top: -12px;
+  left: 12px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  padding: 0 5px;
+  transition: all 0.2s ease;
+}
+
+/* Hiệu ứng cho input khi có dữ liệu */
+.form-group-login input:focus + label,
+.form-group-login input:not(:focus):not(:placeholder-shown) + label {
+  top: -20px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+/* Nút đăng ký */
+.btn-login button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login button:hover {
+  background-color: #007bff;
+}
+
+/* Biểu tượng mắt */
 .eye {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 20px;
-    color: #ccc;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
 }
 
-/* Style cho nút quên mật khẩu */
-a {
-    font-size: 12px;
-    color: #007bff;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
+.eye-none {
+  display: none;
 }
 
-a:hover {
-    text-decoration: underline;
+.eye-slash {
+  display: block;
 }
 
-/* Style cho nút đăng nhập */
-.btn-login {
-    margin-top: 20px;
-    text-align: center;
+#password:focus + .eye {
+  display: block;
 }
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #000; /* Đổi màu nền thành đen */
-    color: white; /* Chữ màu trắng để dễ đọc */
-    border: none;
+
+/* Tối ưu hóa cho thiết bị di động */
+@media (max-width: 768px) {
+  #login {
+    max-width: 100%;
+    padding: 20px;
+  }
+}
+
+
+.notification {
+    padding: 15px;
+    margin: 10px 0;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #333; /* Màu đen nhạt hơn khi hover */
-}
-
-/* Style cho thông báo lỗi */
-.center {
+    font-size: 16px;
     text-align: center;
-    color: red;
 }
 
-/* Responsiveness */
-@media (max-width: 480px) {
-    #login {
-        width: 90%;
-        padding: 15px;
-    }
-
-    #login h3 {
-        font-size: 20px;
-    }
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
-    </style>
-<section>
-    <div id="login">
-        <h3 class="login-title">Đăng Nhập Hệ Thống</h3>
-        <p>Bạn Chưa Có Tài Khoản? <a href="index.php?pg=dangky" style="color:blue">Đăng Ký</a></p>
-        <?php if (isset($_SESSION['user_id'])): ?>
-    <p>Bạn Đã Năng Nhập!</p>
-<?php else: ?>
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+        </style>
+   <section>
+  <div id="login">
+    <h3 class="login-title">Đăng Nhập Hệ Thống</h3>
+    <center><d>Chưa có tài khoản? <a href="index.php?pg=dangky" style="color:blue">Đăng Ký</a></d></center>
     <form action="index.php?pg=dangnhap" method="POST" id="form-login">
-
-            <form action="index.php?pg=dangnhap" method="POST" id="form-login">
-               
-                <div class="form-group-login">
-                    <input type="text" name="username" id="username" class="email-ip" placeholder="Tên đăng nhập " required />
-                    
-                </div>
-                <div class="form-group-login">
-                    <input type="password" name="password" id="password" placeholder="Mật khẩu " required />
-                    <i class="far fa-eye eye"></i>
-                    <i class="far fa-eye-slash eye eye-none"></i>
-                
-                </div>
-                    <?php
-                        if($checkMK==1){
-                            echo $saimatkhau;
-                        }
-                        if($checkMK==2){
-                            echo $saitaikhoan;
-                        }
-                    ?>
-                    <a href="index.php?pg=forgot_password" style="margin-left:52px; color:#000">Quên Mật Khẩu?</a>
-                <div class="btn-login pt-1">
-                    <button type="submit">Đăng Nhập</button>
-                </div>
-            </form>
-        <?php endif; ?>
-    </div>
+      <br>
+      <!-- Các trường nhập liệu cho đăng nhập -->
+      <div class="form-group-login">
+      <label for="username">Tên Đăng Nhập</label>
+        <input type="text" name="username" id="username" class="email-ip" placeholder=" " required />
+      </div>
+      <div class="form-group-login">
+      <label for="password">Mật Khẩu</label>
+        <input type="password" name="password" id="password" placeholder=" " required />
+      </div>
+      <div class="btn-login pt-1">
+        <button type="submit">Đăng Nhập</button>
+      </div>
+    </form>
+  </div>
 </section>
+
+    
+
