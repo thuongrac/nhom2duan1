@@ -66,6 +66,7 @@ $(document).ready(function() {
     $('.role').on('click', function() {
         userId = $(this).data('id');
         newRole = $(this).data('admin') === 1 ? 0 : 1; // Thay đổi quyền từ Admin sang Người dùng và ngược lại
+        const user = $(this).closest('tr').find('td:last-child').text().trim() === 'Ban' ? 1 : 0;
 
         // Lưu giá trị ban vào button xác nhận
         $('#confirmRoleChange').data('role', newRole);

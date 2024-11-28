@@ -1,13 +1,14 @@
 <?php
 
+// Cấu hình kết nối
 $servername = "localhost";
-$port = 3306; 
+$port = 3307;
 $username = "root";
 $password = "";
-$database = "dulieumau"; 
+$database = "dulieumau";
 
 function pdo_get_connection() {
-    global $servername, $username, $password, $database, $port;
+    global $servername, $port, $username, $password, $database;
     $dsn = "mysql:host=$servername;port=$port;dbname=$database;charset=utf8";
 
     try {
@@ -46,5 +47,6 @@ function pdo_query_one($sql) {
         unset($conn); 
     }
 }
+
 
 ?>

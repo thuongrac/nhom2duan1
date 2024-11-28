@@ -1,10 +1,44 @@
 <?php
 require_once 'model/ProductModel.php';
+require_once 'model/database.php';
+
 
 class ProductController {
-    public function displayProducts() {
-        $productModel = new ProductModel();
-        return $productModel->getAllProducts();
+    private $productModel;
+
+    public function __construct() {
+        $this->productModel = new ProductModel();
+    }
+
+    public function getBestSellingProducts() {
+        return $this->productModel->getBestSellingProducts();
+    }
+
+    public function getNewProducts() {
+        return $this->productModel->getNewProducts();
+    }
+
+    public function getProductById($id) {
+        $db = pdo_get_connection(); 
+        $query = "
+            SELECT sp.*, h.hinh
+            FROM san_pham sp
+            LEFT JOIN hinh h ON sp.id_sanpham = h.id_hinh
+            WHERE sp.id_sanpham = :id
+        ";
+
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function getRelatedProducts($categoryId, $productId) {
+        $query = "SELECT * FROM products WHERE category_id = :categoryId AND id != :productId LIMIT 4";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['categoryId' => $categoryId, 'productId' => $productId]);
+        return $stmt->fetchAll();
     }
 }
 ?>

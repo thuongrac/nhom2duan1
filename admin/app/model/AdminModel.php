@@ -4,22 +4,7 @@ require_once('../../../model/database.php'); // Sửa đường dẫn cho đúng
 class AdminModel {
     private $db;
 
-    public function getAllUsers() {
-        $sql = "SELECT * FROM user"; // Giả sử bạn có bảng user
-        $users = pdo_query_all($sql);
-        if (!$users) {
-            echo "Không có người dùng nào.";
-        }
-        return $users;
-    }
 
-    // Lấy người dùng theo ID
-    public function getUserById($id) {
-        $query = "SELECT * FROM user WHERE id_user = :id";
-        $this->db->query($query);
-        $this->db->bind(':id', $id);
-        return $this->db->single();
-    }
     public function updateUserStatus($id, $ban, $admin) {
         try {
             // Chuẩn bị câu truy vấn SQL
